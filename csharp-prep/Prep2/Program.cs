@@ -5,11 +5,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Prep2 World!");
-
-        int a = 90;
-        int b = 80;
-        int c = 70;
 
         Console.Write("What is your grade percentage?");
         string userInput = Console.ReadLine();
