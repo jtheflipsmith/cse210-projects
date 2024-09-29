@@ -1,0 +1,80 @@
+string number = Console.ReadLine();
+do
+{
+    Console.WriteLine("Hellow! Welcome to Journal");
+    Console.WriteLine("Pick an option:");
+    Console.WriteLine("1. Write");
+    Console.WriteLine("2. Display");
+    Console.WriteLine("3. Load");
+    Console.WriteLine("4. Save");
+    Console.WriteLine("5. Quit");
+    Console.Write("Please put the number you would like to do: ");
+     
+}    while (number != "5");
+
+
+            if (userInput == "1")
+            {
+                Entry entry = new Entry();
+                Console.Write("Please input the date");
+                entry._dateEntry = Console.ReadLine();
+                Console.WriteLine($"{newPrompt}");
+                Console.Write("-->");
+                entry._userEntry = Console.ReadLine();
+                return;
+            }
+            else if (userInput == "2")
+            {
+                Entry entry = new Entry();
+                entry.Display();
+                return;
+            }
+
+
+
+        Prompt newPrompt = new Prompt();
+        newPrompt._prompts.Add("How have you seen the hand of the Lord today?");
+        newPrompt._prompts.Add("What was the best moment of your day?");
+        newPrompt._prompts.Add("What was something you struggled the most with?");
+        newPrompt.RandomPrompt();
+
+        string userInput = "";
+
+        while (true)
+        {
+            Console.WriteLine("Welcome to the Journal Program!");
+            Console.WriteLine("Pick an option:");
+            Console.WriteLine("1. Write");
+            Console.WriteLine("2. Display");
+            Console.WriteLine("3. Load");
+            Console.WriteLine("4. Save");
+            Console.WriteLine("5. Quit");
+            Console.Write("Please put the number you would like to do: ");
+            userInput = Console.ReadLine();
+
+            if (userInput == "1")
+            {
+                Entry entry = new Entry();
+                Console.Write("Please input the date");
+                entry._dateEntry = Console.ReadLine(); 
+                Console.WriteLine($"{newPrompt}");
+                Console.Write("-->");
+                entry._userEntry = Console.ReadLine();
+            }
+            else if (userInput == "2")
+            {
+                Entry entry = new Entry();
+                entry.Display();
+                return;
+            }
+            else if (userInput == "3")
+            {
+            }
+            else if (userInput == "4")
+            {
+                return;
+            }
+            else if (userInput == "5")
+            {
+                break;
+            }
