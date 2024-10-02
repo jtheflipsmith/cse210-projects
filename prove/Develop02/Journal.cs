@@ -9,7 +9,7 @@ public class Journal
      {
           foreach ( i in _userJournal)
           {
-               Console.WriteLine(i);
+               
           }
      }
      
