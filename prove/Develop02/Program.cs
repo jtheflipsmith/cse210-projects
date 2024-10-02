@@ -7,7 +7,7 @@ class Program
         string userInput = "";
         Console.WriteLine("Welcome to the Journal Program!");
 
-        while (userInput !=  "5")
+        do
         {
 
             Console.WriteLine("Pick an option:");
@@ -25,32 +25,40 @@ class Program
                 string dateText = theCurrentTime.ToShortDateString();
                 
 
-                Prompt prompt = new Prompt();
-                string newPrompt = prompt.RandomPrompt();
+                Entry prompt = new Entry();
+                prompt._promptText.RandomPrompt();
 
                 Entry entry = new Entry();
                 entry._dateEntry = dateText;
-                Console.WriteLine(newPrompt);
-                entry._promptText = newPrompt;
+                Console.WriteLine(prompt);
+                entry._promptText = prompt;
                 Console.Write("");
                 Console.WriteLine("");
                 entry._userEntry = Console.ReadLine();
-                entry.Display();
                 
-
+                Journal newJournal = new Journal();
+                newJournal.AddEntry(entry);
+                newJournal.DisplayList();
+                
+                //Console.Write("Which file would you like to save this in: ");
+                //string filePath = Console.ReadLine();
                 
             }
             else if (userInput == "2")
             {
-                
+
             }
             else if (userInput == "3")
             {
-                Journal save = new Journal();
-                save.SaveFile();
+
+            }
+            else if (userInput == "4");
+            {
+                Journal journal = new Journal();
+
             }
             
-        }
+        }while (userInput !=  "5");
 
         
     }

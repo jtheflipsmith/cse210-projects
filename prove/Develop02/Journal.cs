@@ -1,40 +1,43 @@
 using System.Globalization;
-
+using System.Collections.Generic;
+using System.IO;
 public class Journal
 {
      public List<Entry> _userJournal = new List<Entry>();
-     Prompt prompt;
 
-
-     public void AddEntry()
+     public void DisplayList()
      {
-          DateTime theCurrentTime = DateTime.Now;
-          string dateText = theCurrentTime.ToShortDateString();
-          string prompt = newPrompt;
-
-     }
-     public void DisplayFile()
-     {
-          string journalFile = "notes.txt";
-          string[] lines = System.IO.File.ReadAllLines(journalFile);
-
-          foreach (Entry line in lines)
+          foreach ( i in _userJournal)
           {
-               string[] parts = line.Split(",");
-
-               string _dateEntry = parts[0];
-               string _promptText = parts[1];
-               string _userEntry = parts[3];
-               
+               Console.WriteLine(i);
           }
      }
-     public void SaveFile()
+     
+     public void AddEntry(Entry entry)
      {
-          string journalFile = "notes.txt";
-          using (StreamWriter outputFile = new StreamWriter(journalFile));
-   
+          _userJournal.Add(entry);
 
+     }
+     public static List<Entry> DisplayFile()
+     {
 
+          Console.WriteLine("Reading from file...");
+          List<Entry> journal = new List<Entry>();
+          string journalFile = "path.txt";
+          string[] lines = System.IO.File.ReadAllLines(journalFile);
+
+          foreach (string line in lines)
+          {
+               string[] parts = line.Split(",");
+               
+               Console.WriteLine(parts);
+          }
+          return journal;
+     }
+     public void SaveFile(string filePath)
+     {
+          Console.WriteLine("Saving to file...");
+          
      }
 
      public void LoadFile()
