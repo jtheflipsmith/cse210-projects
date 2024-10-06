@@ -21,8 +21,7 @@ class Program
             
             if(userInput == "1" )
             {
-                DateTime theCurrentTime = DateTime.Now;
-                string dateText = theCurrentTime.ToShortDateString();
+
                 
 
                 Entry prompt = new Entry();

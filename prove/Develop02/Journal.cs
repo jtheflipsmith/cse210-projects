@@ -5,6 +5,9 @@ public class Journal
 {
      public List<Entry> _userJournal = new List<Entry>();
 
+     DateTime theCurrentTime = DateTime.Now;
+     string dateText = theCurrentTime.ToShortDateString();
+
      public void DisplayList()
      {
           foreach ( i in _userJournal)
