@@ -71,8 +71,8 @@ public class Scripture
             {
                 return false;
             }
-            return true;
         }
+        return true;
     }
 
 
