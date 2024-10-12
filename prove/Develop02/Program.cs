@@ -1,65 +1,51 @@
 using System;
+using System.IO.Enumeration;
 using System.Xml;
 class Program
 {
     static void Main(string[] args)
     {
-        string userInput = "";
-        Console.WriteLine("Welcome to the Journal Program!");
 
+        Console.WriteLine("Hello! Welcome to the journal program!");
+        Console.WriteLine("Lets get started, shall we?");
+        Journal journal1 = new Journal();
+        string userChoice = "";
         do
         {
 
-            Console.WriteLine("Pick an option:");
-            Console.WriteLine("1. Write");
-            Console.WriteLine("2. Display");
-            Console.WriteLine("3. Load");
-            Console.WriteLine("4. Save");
-            Console.WriteLine("5. Quit");
-            Console.Write("Please put the number you would like to do: ");
-            userInput = Console.ReadLine();
-            
-            if(userInput == "1" )
+            journal1.DisplayList();
+            Console.Write("Put the number of what you want to do here:");
+
+            userChoice = Console.ReadLine();  
+
+            if (userChoice == "1") 
             {
-
-                
-
-                Entry prompt = new Entry();
-                prompt._promptText.RandomPrompt();
-
-                Entry entry = new Entry();
-                entry._dateEntry = dateText;
-                Console.WriteLine(prompt);
-                entry._promptText = prompt;
-                Console.Write("");
+                Entry newEntry = new Entry();
+                journal1.AddEntry(newEntry);
                 Console.WriteLine("");
-                entry._userEntry = Console.ReadLine();
                 
-                Journal newJournal = new Journal();
-                newJournal.AddEntry(entry);
-                newJournal.DisplayList();
-                
-                //Console.Write("Which file would you like to save this in: ");
-                //string filePath = Console.ReadLine();
-                
+            }     
+            else if (userChoice == "2")
+            {
+                journal1.DisplayAll();
+                Console.WriteLine("");
             }
-            else if (userInput == "2")
+            else if (userChoice == "3")
             {
 
+                Console.Write("What is the file you would like to load?: ");
+                string loadFile = Console.ReadLine();
+                journal1.LoadFile(loadFile);
             }
-            else if (userInput == "3")
+            else if (userChoice == "4")
             {
-
+                Console.Write("File Name: ");
+                string saveFile = Console.ReadLine();
+                journal1.SaveFile(saveFile);
             }
-            else if (userInput == "4");
-            {
-                Journal journal = new Journal();
 
-            }
-            
-        }while (userInput !=  "5");
-
-        
+        } while (userChoice != "5");
+    
     }
 
 }

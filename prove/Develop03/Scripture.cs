@@ -28,7 +28,7 @@ public class Scripture
     
     }
 
-    //Get the text from list and compile it into a the string.
+    //Get the text from list and compile it into string.
     public string GetScriptureText()
     {
         List<string> wordText = new List<string>();

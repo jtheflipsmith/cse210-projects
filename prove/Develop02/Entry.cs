@@ -1,7 +1,7 @@
 public class Entry
 {
     public string _dateEntry;
-    public Prompt _promptText;
+    public string _promptText;
     public string _userEntry;
 
 
@@ -10,9 +10,9 @@ public class Entry
 
     public void Display()
     {
-        Console.WriteLine($"{_dateEntry}");
+        Console.WriteLine($"Date: {_dateEntry}");
         Console.WriteLine($"Prompt: {_promptText}");
-        Console.WriteLine($"{_userEntry}");
+        Console.WriteLine($"Entry: {_userEntry}");
         Console.WriteLine("");
     }
 }
