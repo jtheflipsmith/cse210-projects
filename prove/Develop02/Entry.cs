@@ -22,7 +22,7 @@ public class Entry
     public void Summary()
     {
         Console.WriteLine($"Date: {_dateEntry}");
-        Console.WriteLine(_freeEntry);
+        Console.WriteLine($"Entry: {_freeEntry}");
     }
 }
 

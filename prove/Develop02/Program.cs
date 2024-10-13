@@ -24,31 +24,33 @@ class Program
                 journal1.FreeEntry(newEntry);
                 Console.WriteLine("");
                 
-            }     
+            } 
+                
             else if (userChoice == "2")
             {
                 Entry newEntry = new Entry();
                 journal1.PromptEntry(newEntry);
                 Console.WriteLine("");
             }
+
             else if (userChoice == "3")
             {
                 journal1.DisplayAll();
                 Console.WriteLine("");
             }
+
             else if (userChoice == "4")
             {
                 Console.Write("What is the file you would like to load?: ");
                 string loadFile = Console.ReadLine();
-                journal1.LoadFile(loadFile);      
-
-
+                journal1.LoadFile(journal1._freeWrite, journal1._userJournal, loadFile);      
             }
+
             else if (userChoice == "5")
             {
                 Console.Write("File Name: ");
                 string saveFile = Console.ReadLine();
-                journal1.SaveFile(journal1._userJournal, saveFile);               
+                journal1.SaveFile(journal1._userJournal, journal1._freeWrite, saveFile);               
             }
 
         } while (userChoice != "6");

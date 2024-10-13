@@ -5,10 +5,12 @@ using System.Reflection.Metadata.Ecma335;
 public class Journal
 {
      public List<Entry> _userJournal;
+     public List<Entry> _freeWrite;
 
      public Journal()
      {
           _userJournal = new List<Entry>();
+          _freeWrite = new List<Entry>();
      }
  
      public void DisplayList()
@@ -30,9 +32,9 @@ public class Journal
           string[] date = DateTime.Today.ToString().Split(" ");
           entry._dateEntry = date[0];
           //ADDED Text option without prompt.
-          Console.Write("");
+          Console.Write("Text: ");
           entry._freeEntry = Console.ReadLine();
-          _userJournal.Add(entry);
+          _freeWrite.Add(entry);
      }
      
      public void PromptEntry(Entry newEntry)
@@ -55,23 +57,26 @@ public class Journal
 
           Console.WriteLine("Accessing entries...");
 
-          int listEntries = _userJournal.Count;
+          int listEntries = _userJournal.Count + _freeWrite.Count;
 
           Console.WriteLine($"Number of entries: {listEntries}");
     
           foreach (Entry entry in _userJournal)
           {
-               entry.Summary();
                entry.Display();
+          }
+
+          foreach (Entry entry1 in _freeWrite)
+          {
+               entry1.Summary();
           }
           
      }
-     public void SaveFile(List<Entry> _userJournal, string file)
+     public void SaveFile(List<Entry> _userJournal, List<Entry> _freeWWrite,  string file)
      {    
 
-          Console.WriteLine("Saving to file...");
 
-          string fileName = $"{file}.txt";
+          string fileName = Path.Combine("C:\\Users\\joshu\\cse210\\cse210-projects\\prove\\Develop02\\", $"{file}.txt");
 
           using (StreamWriter outputFile = new StreamWriter(fileName))
           {
@@ -80,21 +85,54 @@ public class Journal
                     string entryDetails = $"{entry._dateEntry} | {entry._promptText} | {entry._userEntry}";
                     outputFile.WriteLine(entryDetails);
                }
+               foreach (Entry entry in _freeWrite)
+               {
+                    string newEntry = $"{entry._dateEntry} | {entry._freeEntry}";
+                    outputFile.WriteLine(newEntry);
+               }
           }
+          Console.WriteLine("Saving to file...");
           Console.WriteLine("");
+
           
      }
 
-     public void LoadFile(string file)
+     public void LoadFile(List<Entry> _freeWrite, List<Entry> _userJournal, string file)
      {
-
+          string root = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
           
-          string[] lines = System.IO.File.ReadAllLines(file);
+          string fileName = Path.Combine(root, "prove", "Develop02", $"{file}.txt");
+          
+          string[] lines = System.IO.File.ReadAllLines(fileName);
 
           foreach (string line in lines)
           {
-               string[] parts = line.Split(",");
+               string[] parts = line.Split("|");
+
+               if (parts.Length == 3)
+               {
+                    Entry userEntry = new Entry();
+                    {
+                         string _dateEntry = DateTime.Parse(parts[0].Trim()).ToString();
+                         string _promptText = parts[1].Trim();
+                         string _userEntry = parts[2];
+                    }
+                    _userJournal.Add(userEntry);
+               }
+               else if (parts.Length == 2)
+               {
+                    Entry freeEntry = new Entry();
+                    {
+                         string _dateEntry = DateTime.Parse(parts[0].Trim()).ToString();
+                         string _userEntry = parts[1].Trim();
+                    }
+                    _freeWrite.Add(freeEntry);
+               }
+
+               
+
           }
+          Console.WriteLine("File Loaded Successfully.");
      }
 
 
