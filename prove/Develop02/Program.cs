@@ -17,34 +17,43 @@ class Program
             Console.Write("Put the number of what you want to do here:");
 
             userChoice = Console.ReadLine();  
-
+            //ADDED: Free Write as new option.
             if (userChoice == "1") 
             {
                 Entry newEntry = new Entry();
-                journal1.AddEntry(newEntry);
+                journal1.FreeEntry(newEntry);
                 Console.WriteLine("");
                 
             }     
             else if (userChoice == "2")
             {
-                journal1.DisplayAll();
+                Entry newEntry = new Entry();
+                journal1.PromptEntry(newEntry);
                 Console.WriteLine("");
             }
             else if (userChoice == "3")
             {
-
-                Console.Write("What is the file you would like to load?: ");
-                string loadFile = Console.ReadLine();
-                journal1.LoadFile(loadFile);
+                journal1.DisplayAll();
+                Console.WriteLine("");
             }
             else if (userChoice == "4")
             {
+                Console.Write("What is the file you would like to load?: ");
+                string loadFile = Console.ReadLine();
+                journal1.LoadFile(loadFile);      
+
+
+            }
+            else if (userChoice == "5")
+            {
                 Console.Write("File Name: ");
                 string saveFile = Console.ReadLine();
-                journal1.SaveFile(saveFile);
+                journal1.SaveFile(journal1._userJournal, saveFile);               
             }
 
-        } while (userChoice != "5");
+        } while (userChoice != "6");
+
+        Console.WriteLine("Thank you for using The Journal Program!");
     
     }
 

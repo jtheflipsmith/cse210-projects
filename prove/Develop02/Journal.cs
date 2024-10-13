@@ -13,24 +13,38 @@ public class Journal
  
      public void DisplayList()
      {
-          Console.WriteLine("1. Write");
-          Console.WriteLine("2. Display");
-          Console.WriteLine("3. Load");
-          Console.WriteLine("4. Save");
-          Console.WriteLine("5. Quit");
+          //ADDED: free write to the options list.
+          Console.WriteLine("1. Free Write");
+          //These are the project required optins
+          Console.WriteLine("2. Write With Prompt");
+          Console.WriteLine("3. Display");
+          Console.WriteLine("4. Load");
+          Console.WriteLine("5. Save");
+          Console.WriteLine("6. Quit");
 
      }
-     
-     public void AddEntry(Entry newEntry)
+
+     //ADDED: Method for letting user user free form in their journal entry.
+     public void FreeEntry(Entry entry)
      {
-          //Adding date
+          string[] date = DateTime.Today.ToString().Split(" ");
+          entry._dateEntry = date[0];
+          //ADDED Text option without prompt.
+          Console.Write("");
+          entry._freeEntry = Console.ReadLine();
+          _userJournal.Add(entry);
+     }
+     
+     public void PromptEntry(Entry newEntry)
+     {
+          
           string[] date = DateTime.Today.ToString().Split(" ");
           newEntry._dateEntry = date[0];
-          //Adding prompt
+          
           Prompt prompt = new Prompt();
           newEntry._promptText = prompt.GetRandomPrompt();
           Console.WriteLine($"{newEntry._promptText}");
-          //Adding entry
+          
           Console.Write("");
           newEntry._userEntry = Console.ReadLine();
 
@@ -47,11 +61,12 @@ public class Journal
     
           foreach (Entry entry in _userJournal)
           {
+               entry.Summary();
                entry.Display();
           }
           
      }
-     public void SaveFile( string file)
+     public void SaveFile(List<Entry> _userJournal, string file)
      {    
 
           Console.WriteLine("Saving to file...");
@@ -62,7 +77,8 @@ public class Journal
           {
                foreach (Entry entry in _userJournal)
                {
-                    outputFile.WriteLine($"{entry._dateEntry} | {entry._promptText} | {entry._userEntry}");
+                    string entryDetails = $"{entry._dateEntry} | {entry._promptText} | {entry._userEntry}";
+                    outputFile.WriteLine(entryDetails);
                }
           }
           Console.WriteLine("");

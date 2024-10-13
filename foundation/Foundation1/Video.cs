@@ -9,9 +9,9 @@ public class Video
 
     public void VideoDetails()
     {
-        Console.WriteLine($"Creator: {_author}");
-        Console.WriteLine($"Video: {_title}");
-        Console.WriteLine($"Time in seconds: {_seconds}");
+        Console.WriteLine($"Creator: {_author}\n");
+        Console.WriteLine($"Video: {_title}\n");
+        Console.WriteLine($"Time in seconds: {_seconds}\n");
         foreach (Comment item in _comment)
         {
             item.Display();

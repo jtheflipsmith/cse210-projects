@@ -26,6 +26,7 @@ class Program
         video1._comment.Add(vid1Com2);
         video1._comment.Add(vid1Com3);
 
+        Console.WriteLine("");
         video1.VideoDetails();
 
         Video video2 = new Video();
@@ -49,6 +50,7 @@ class Program
         video2._comment.Add(vid2Com2);
         video2._comment.Add(vid2Com3);
 
+        Console.WriteLine("");
         video2.VideoDetails();
         
         Video video = new Video();

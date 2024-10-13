@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Threading.Tasks.Dataflow;
+using System.Xml;
 
 class Program
 {
@@ -21,28 +22,30 @@ class Program
         string userInput = Console.ReadLine();
         int chapter = int.Parse(userInput);
         Console.Clear();
-        Console.Write("Is there multiple verses? (YES/NO) ");
-        string answer = Console.ReadLine();
-        Console.Clear();
-        if (answer == "YES")
+        string answer = "";
+        do
         {
-            Console.Write("Start Verse: ");
-            int verse = int.Parse(Console.ReadLine()); 
-            Console.Write("What verse will you end on?");
-            int endVerse = int.Parse(Console.ReadLine()); 
-            reference = new Reference(book, chapter, verse, endVerse);      
-        }
-        
+            Console.Write("Is there multiple verses? (YES/NO) ");
+            answer = Console.ReadLine();
+            if (answer == "YES")
+            {
+                Console.Write("Start Verse: ");
+                int verse = int.Parse(Console.ReadLine()); 
+                Console.Write("What verse will you end on?");
+                int endVerse = int.Parse(Console.ReadLine()); 
+                reference = new Reference(book, chapter, verse, endVerse);      
+            }
 
-        else if (answer == "NO")
-        {
-            Console.Write("Start Verse: ");
-            int verse = int.Parse(Console.ReadLine());        
-            //Compiling user responses into a self filling string. 
-            reference = new Reference(book, chapter, verse);
-        }
 
-        else{ Console.WriteLine("Sorry, please type in capitals YES or NO");}
+            else if (answer == "NO")
+            {
+                Console.Write("Start Verse: ");
+                int verse = int.Parse(Console.ReadLine());        
+                //Compiling user responses into a self filling string. 
+                reference = new Reference(book, chapter, verse);
+            }
+
+        }while (answer != "YES" && answer != "NO");
 
         Console.Clear();
 
@@ -56,20 +59,20 @@ class Program
         scripture.IsCompletelyHidden();
         string scriptureText = scripture.GetScriptureText();
         Console.WriteLine(scriptureText);
-        Console.ReadLine();
-
+        Console.WriteLine("");
         
-
-        
+        string input = "";
+        Console.Clear();
         do
         {
-            scripture.HideRandomWords(3);
-            string mainText = scripture.GetScriptureText();
-            Console.WriteLine(mainText);
-            Console.ReadLine();
+            Console.WriteLine("Enter to eliminate words | Type 'QUIT' to quit program.");
+            Console.Write("");
+            input = Console.ReadLine();
+            Console.WriteLine(scripture.GetScriptureText());
+            scripture.HideRandomWords(1);
             Console.Clear();
-            scripture.IsCompletelyHidden();
-        } while (scripture.IsCompletelyHidden() == false);
+            scripture.IsCompletelyHidden(); 
+        }while (scripture.IsCompletelyHidden() is false && userInput != "QUIT");
 
 
 
