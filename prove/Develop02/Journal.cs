@@ -101,7 +101,7 @@ public class Journal
      {
           string root = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
           
-          string fileName = Path.Combine(root, "prove", "Develop02", $"{file}.txt");
+          string fileName = Path.Combine(root, $"{file}.txt");
           
           string[] lines = System.IO.File.ReadAllLines(fileName);
 
@@ -111,21 +111,21 @@ public class Journal
 
                if (parts.Length == 3)
                {
-                    Entry userEntry = new Entry();
+                    Entry userEntry = new Entry()
                     {
-                         string _dateEntry = DateTime.Parse(parts[0].Trim()).ToString();
-                         string _promptText = parts[1].Trim();
-                         string _userEntry = parts[2];
-                    }
+                         _dateEntry = DateTime.Parse(parts[0].Trim()).ToString(),
+                         _promptText = parts[1].Trim(),
+                         _userEntry = parts[2]
+                    };
                     _userJournal.Add(userEntry);
                }
                else if (parts.Length == 2)
                {
-                    Entry freeEntry = new Entry();
+                    Entry freeEntry = new Entry()
                     {
-                         string _dateEntry = DateTime.Parse(parts[0].Trim()).ToString();
-                         string _userEntry = parts[1].Trim();
-                    }
+                         _dateEntry = DateTime.Parse(parts[0].Trim()).ToString(),
+                         _userEntry = parts[1].Trim()
+                    };
                     _freeWrite.Add(freeEntry);
                }
 

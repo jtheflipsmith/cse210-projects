@@ -31,14 +31,14 @@ public class Scripture
     //Get the text from list and compile it into string.
     public string GetScriptureText()
     {
-        List<string> wordText = new List<string>();
+        string scriptureText = "";
 
         foreach(Word word in _words)
         {
-            wordText.Add(word.GetDisplayText());
+            scriptureText += " " + word.GetDisplayText(); 
         }
 
-        return _reference.GetDisplayReference()+ " " + string.Join(" ", wordText);
+        return $"{_reference.GetDisplayReference()} {scriptureText}";
     }
 
     //This will use a for range loop to iterate through the numbers of each item in 
@@ -46,20 +46,7 @@ public class Scripture
     //Underscores.
     public void HideRandomWords(int numberToHide)
     {
-        int number = numberToHide;
-        if (_words[number].IsHidden())
-        {
-            Random random = new Random();
-            do
-            {
-                 number = random.Next(_words.Count());
-
-            } while (_words[number].IsHidden());
-        }
-        _words[number].HideWord();
-
-        
-        
+        _words[0].HideWord();
     }
 
     //This method will tell the program if all words are hidden and close the program.
