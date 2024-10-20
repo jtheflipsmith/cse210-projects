@@ -39,6 +39,7 @@ class Program
                 PonderActivity ponder = new PonderActivity();
                 ponder.Run();
             }
+            //Easter Egg ;)
             else if (choice == 5)
             {
                 Activity fun = new Activity();
