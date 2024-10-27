@@ -1,0 +1,4 @@
+Cleric
+SimpleGoal: Service, find one way to serve this week, 350
+ChecklistGoal: Worship, attend a worship service of the highest order, 50, 4, 500
+EternalGoal: Study, Delve into holy tombs of knowledge and connect with God each day, 20

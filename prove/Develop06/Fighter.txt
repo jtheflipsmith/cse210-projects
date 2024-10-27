@@ -1,0 +1,4 @@
+Fighter
+SimpleGoal: Routine, Create a personal workout routine, 350
+ChecklistGoal: Discipline, Meditate and train your mind once a week, 50, 4, 500
+EternalGoal: Strength, 10 pushups a day, 20
