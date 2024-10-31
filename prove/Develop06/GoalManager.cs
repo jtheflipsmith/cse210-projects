@@ -17,7 +17,7 @@ public class GoalManager
     public void Start()
     {
         string choice = "";
-        while (choice != "6")
+        while (choice != "7")
         {
             DisplayPlayerInfo();
 
@@ -29,7 +29,7 @@ public class GoalManager
             Console.WriteLine(" 5. Record Event");
             //Added creativity
             Console.WriteLine(" 6. Choose a class");
-            Console.WriteLine(" 7.Quit");
+            Console.WriteLine(" 7. Quit");
             Console.Write("");
             choice = Console.ReadLine();
             if (choice == "1")
@@ -140,7 +140,10 @@ public class GoalManager
         ListGoalNames();
         Console.WriteLine("Which goal did you accomplish?");
         Console.Write("");
+        // Do some user error checking
         int userResponse = int.Parse(Console.ReadLine());
+        _goals[userResponse - 1].RecordEvent();
+        
         
     }
     public void SaveGoals(List<Goal> _goals, string file)
@@ -168,14 +171,38 @@ public class GoalManager
         string fileName = Path.Combine(root, $"{file}.txt");
         
         string[] lines = System.IO.File.ReadAllLines(fileName);
-        foreach (string line in lines)
+        // (setting i to 0; telling i to )
+        for (int i = 0; i < lines.Length; i++)
         {
+            if (i == 0)
+            {
+                int.TryParse(lines[0], out _score);
+            }
+            else
+            {
+                string[] parts = lines[i].Split(":");
+                string className = parts[0].Trim();
+                //To do: Should we handle impropper case in this program?
+                if (className == "SimpleGoal")
+                {
+                    if (parts.Length <= 1)
+                    {
+                        continue;
+                    }
+                    string[] goalParts = parts[1].Split(",");
+                    //Choosing to ignore bad formatted goals
+                    if (goalParts.Length < 3)
+                    {
+                        continue;
+                    }
 
-            string[] parts = line.Split(":");
-            string className = parts[0].Trim();
-            string goal = parts[1].Trim();
+                    SimpleGoal simple = new SimpleGoal(goalParts[0], goalParts[1], int.Parse(goalParts[2]));
+                    _goals.Add(simple);    
+
+                }
+            }
             
-            if (className == "EternalGoal");
+
             
         }
     }
@@ -201,13 +228,16 @@ public class GoalManager
 
                 string[] parts = line.Split(":");
                 string className = parts[0].Trim();
-                string goal = parts[1].Trim();
+                string goal = "";
 
-                if (className == "EternalGoal");
+                if (parts.Length > 1)
+                {
+                    goal = parts[1].Trim();
+                }
 
             }
         }
-        else if (decision == "2");
+        else if (decision == "2")
         {
             string root = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
 

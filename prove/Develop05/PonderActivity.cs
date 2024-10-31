@@ -9,7 +9,7 @@ public class PonderActivity : Activity
     public PonderActivity()
     {
         _name = "Ponder";
-        _description = "Take a moment to look over a scripture about how God sees you, think about the words in the scripture and write a quick thought about how it makes you feel.";
+        _description = "Take a moment to look over a scripture about how God sees you, think about the words in the scripture and write a quick thought about how it makes you feel.\n\nWhen finished type 'QUIT'";
         
         _scripture = new List<string>()
         {
@@ -34,7 +34,8 @@ public class PonderActivity : Activity
         DisplayStartMessage();
         Console.WriteLine();
         DisplayScripture();
-        string userResponse = "";
+        Console.WriteLine("");
+        string userResponse;
         do
         {
             DisplayQuestion();

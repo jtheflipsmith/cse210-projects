@@ -7,7 +7,7 @@ public class Activity
     public Activity()
     {
         _name = "Meditation";
-        _description = "Please pick an option:\n 1. Breathing Activity\n 2. Reflection Activity\n 3. Listing Activity\n 4.Ponder Activity2";
+        _description = "Please pick an option:\n 1. Breathing Activity\n 2. Reflection Activity\n 3. Listing Activity\n 4. Ponder Activity2";
         _duration = -1;
     }
 

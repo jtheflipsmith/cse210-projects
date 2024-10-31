@@ -14,15 +14,27 @@ public class ChecklistGoal : Goal
 
     public override void RecordEvent()
     {
-        
+        _amountCompleted += 1;
     }
     public override bool IsComplete()
     {
-        return true;
+        if (_amountCompleted >= _target)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
     public override string GetDetailsString()
     {
         string checkbox = "[ ]";
+        if (IsComplete())
+        {
+            checkbox = "[X]";
+        }
         string detail = $"{GetName()} ({GetDescription()}) points: {GetPoints()} finish bonus: {_bonus} | {_amountCompleted}/{_target}";
         return $"{checkbox}  {detail}";
     }

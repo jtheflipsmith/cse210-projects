@@ -27,6 +27,10 @@ public abstract class Goal
     public virtual string GetDetailsString()
     { 
         string checkbox = "[ ]";
+        if (IsComplete())
+        {
+            checkbox = "[X]";
+        }
         string details = $"{_name} ({_description})  {_points}pts";
         return $"{checkbox} {details}";
     }
