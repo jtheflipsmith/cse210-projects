@@ -1,2 +1,4 @@
-20
-SimpleGoal: goal 1, This is for goal 1, 200
+0
+SimpleGoal:Finish program,Get the coding done for this assignments,200
+EternalGoal:Pushup challenge,do ten pushups a day,25
+ChecklistGoal:Temple Work,Attend the temple regularly,30,4,400

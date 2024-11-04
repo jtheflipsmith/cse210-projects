@@ -32,6 +32,7 @@ public class GoalManager
             Console.WriteLine(" 7. Quit");
             Console.Write("");
             choice = Console.ReadLine();
+            
             if (choice == "1")
             {
                 CreateGoal();
@@ -143,7 +144,9 @@ public class GoalManager
         // Do some user error checking
         int userResponse = int.Parse(Console.ReadLine());
         _goals[userResponse - 1].RecordEvent();
-        
+        int addedScore = _goals[userResponse - 1].GetPoints();
+        _score += addedScore;
+
         
     }
     public void SaveGoals(List<Goal> _goals, string file)
@@ -171,11 +174,13 @@ public class GoalManager
         string fileName = Path.Combine(root, $"{file}.txt");
         
         string[] lines = System.IO.File.ReadAllLines(fileName);
-        // (setting i to 0; telling i to )
+        // (setting i to 0; telling i to stop at the end of lines, iterated through lines one at a time.)
         for (int i = 0; i < lines.Length; i++)
         {
+            // Skipping first line and setting _score.
             if (i == 0)
             {
+                // Adding first line into _score to mark the points
                 int.TryParse(lines[0], out _score);
             }
             else
@@ -198,8 +203,40 @@ public class GoalManager
 
                     SimpleGoal simple = new SimpleGoal(goalParts[0], goalParts[1], int.Parse(goalParts[2]));
                     _goals.Add(simple);    
-
                 }
+                else if (className == "EternalGoal")
+                {
+                    if (parts.Length <= 1)
+                    {
+                        continue;
+                    }
+                    string[] goalParts = parts[1].Split(",");
+                    //Choosing to ignore bad formatted goals
+                    if (goalParts.Length < 3)
+                    {
+                        continue;
+                    }
+
+                    EternalGoal eternal = new EternalGoal(goalParts[0], goalParts[1], int.Parse(goalParts[2]));
+                    _goals.Add(eternal);
+                }
+                else if (className == "ChecklistGoal")
+                {
+                    if (parts.Length <= 1)
+                    {
+                        continue;
+                    }
+                    string[] goalParts = parts[1].Split(",");
+                    //Choosing to ignore bad formatted goals
+                    if (goalParts.Length < 3)
+                    {
+                        continue;
+                    }
+
+                    ChecklistGoal checklist = new ChecklistGoal(goalParts[0], goalParts[1], int.Parse(goalParts[2]), int.Parse(goalParts[3]), int.Parse(goalParts[4 ]) );
+                    _goals.Add(checklist);
+                }
+                
             }
             
 
@@ -218,42 +255,14 @@ public class GoalManager
 
         if (decision == "1")
         {
-            string root = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-
-            string fileName = Path.Combine(root, $"Fighter.txt");
-
-            string[] lines = System.IO.File.ReadAllLines(fileName);
-            foreach (string line in lines)
-            {
-
-                string[] parts = line.Split(":");
-                string className = parts[0].Trim();
-                string goal = "";
-
-                if (parts.Length > 1)
-                {
-                    goal = parts[1].Trim();
-                }
-
-            }
+            Console.WriteLine("Welcome Fighter! Your new goals should now be in your que");
+            LoadGoals("Fighter");
         }
+                    
         else if (decision == "2")
         {
-            string root = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-
-            string fileName = Path.Combine(root, "Cleric.txt");
-
-            string[] lines = System.IO.File.ReadAllLines(fileName);
-            foreach (string line in lines)
-            {
-
-                string[] parts = line.Split(":");
-                string className = parts[0].Trim();
-                string goal = parts[1].Trim();
-
-                if (className == "EternalGoal");
-
-            }
+            Console.WriteLine("Ah, a new cleric! We have added your assignments to your que");
+            LoadGoals("Cleric");
         }
     }
 }

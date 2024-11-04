@@ -11,6 +11,7 @@ public class SimpleGoal : Goal
     public override void RecordEvent()
     {
         _isComplete = true;
+        GetPoints();
     }
     public override bool IsComplete()
     {           

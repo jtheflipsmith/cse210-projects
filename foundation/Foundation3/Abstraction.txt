@@ -1,0 +1,19 @@
+Classes:
+ - Activity --> base 
+ - RunningActivity
+ - BikingActivity
+ - SwimmingActivity
+
+Activity
+--------
+Methods:
+
+Distance : int
+Speed : int
+Pace : int
+GetSummery : void 
+
+Attributes:
+
+_date : DateTime
+

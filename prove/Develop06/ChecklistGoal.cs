@@ -15,6 +15,7 @@ public class ChecklistGoal : Goal
     public override void RecordEvent()
     {
         _amountCompleted += 1;
+        GetPoints();
     }
     public override bool IsComplete()
     {
@@ -40,7 +41,7 @@ public class ChecklistGoal : Goal
     }
     public override string GetStringRepresentation()
     {
-        return $"ChecklistGoal: {GetName()}, {GetDescription()}, {GetPoints()}, {_target}, {_bonus}";
+        return $"ChecklistGoal:{GetName()},{GetDescription()},{GetPoints()},{_target},{_bonus}";
     }
 
 }
